@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dynamic Table</title>
+    <script  src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+* {
+  box-sizing: border-box;
+  
+  font:Consolas;
+  font-size: 28;
+}
+
+/* Create two equal columns that floats next to each other */
+.column {
+  float: left;
+  padding: 10px;
+   /* Should be removed. Only for demonstration */
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.mytext{
+  font-size: 100px;
+}
+
+h1 {
+  font-size: 40px;
+}
+
+h2 {
+  font-size: 30px;
+}
+
+p {
+  font-size: 28px;
+}
+
+#c{
+  
+  border: 1px dotted black;
+}
+
+</style>
+
+    <script >
+        $(document).ready(function(){
+            $("button").click(function(){
+              var number_of_rows = 1;
+              var number_of_cols = $('#cols').val();
+           //   var table_body = '<table border="1">';
+           var fnt=$('#f').val();
+           var wth=$('#wd').val();
+           var table_body;
+              for(var i=0;i<number_of_rows;i++){
+               // table_body+='<tr>'; 
+               table_body = '<div class="row">';
+                for(var j=0;j<number_of_cols;j++){
+                  //  table_body +='<td>';
+                    //table_body +='Table data';
+                    //table_body +='</td>';
+                    table_body +='<div id="c" class="column" style="width:';
+                    table_body +=wth;
+                    table_body +=';font-size:';
+                    table_body +=fnt;
+                    table_body +='">';
+                //    $('#column').css({ width : n + "%" }); 
+ var b = document.getElementById('mytext').value;
+
+        b = b.replace(/(?:\r\n|\r|\n)/g, '<br />');
+        table_body +=b;
+
+                    table_body +='</div>';
+
+                }
+                table_body+='</div>';
+              }
+              //  table_body+='</table>';
+               $('#tableDiv').html(table_body);
+            });
+        });
+    </script>
+</head>
+<body>
+<div style="margin-top: 10px; margin-left: 10px"><center>
+  <textarea type="text" id="mytext"></textarea><br>
+
+    Number of Copies: <input type="text" id="cols">
+    Width: <input type="text" id="wd" value="%">
+    Font: <input type="text" id="f" value="px">
+    <button>Preview</button>
+    </center>
+    <div id="tableDiv" style="margin-top: 20px">
+      
+    </div>
+</div>
+</body>
+</html>
