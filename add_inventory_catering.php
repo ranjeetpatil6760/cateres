@@ -76,7 +76,7 @@ var sum=0;
 
 function addRow(frm) {
 rowNum ++;
-var row = '<p id="rowNum'+rowNum+'"> Item: <input type="text" name="dn[]" size="4" value="'+frm.i_name.value+'" readonly="true">Quantity: <input type="text" name="dqty[]" size="4" value="'+frm.quantity.value+'" readonly="true">Unit: <input type="text" name="unit[]" value="'+frm.unit.value+'" readonly="true">Price: <input type="text" name="price[]" value="'+frm.price.value+'" readonly="true"><input type="button" class="btn btn-danger" value="-Remove" onclick="removeRow('+rowNum+','+frm.price.value+')"><br></p>';
+var row = '<table class="table table-bordered" id="rowNum'+rowNum+'"><tbody><tr><td><input type="text" class="form-control" name="dn[]"  value="'+frm.i_name.value+'" readonly="true"></td><td><input type="text" class="form-control" name="dqty[]"  value="'+frm.quantity.value+'" readonly="true"></td><td><input type="text" class="form-control" name="unit[]" value="'+frm.unit.value+'" readonly="true"></td><td><input type="text" class="form-control" name="price[]" value="'+frm.price.value+'" readonly="true"></td><td><input type="button" class="btn btn-danger" value="-Remove" onclick="removeRow('+rowNum+','+frm.price.value+')"><br></td></tr></tbody></table>';
 
  sum+= parseInt(frm.price.value);
 jQuery('#itemRows').append(row);

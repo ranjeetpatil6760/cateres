@@ -19,9 +19,9 @@
             // $res1 = mysqli_fetch_array($odrcnt);
             // $cnt_odrs = $res1['o_id'];
              // count no. of dishes
-             $dishcnt = mysqli_query($con,"SELECT COUNT(*) as d_id FROM dish_list");
-             $res2 = mysqli_fetch_array($dishcnt);
-            $cnt_dish = $res2 ['d_id'];
+             $wcnt = mysqli_query($con,"SELECT COUNT(*) as id FROM event_worker");
+             $res2 = mysqli_fetch_array($wcnt);
+            $cnt_w = $res2 ['id'];
                // count no. of Items
             $itemcnt = mysqli_query($con,"SELECT COUNT(*) as id FROM item_list");
              $res3 = mysqli_fetch_array($itemcnt);
@@ -65,11 +65,11 @@
 
 					<div class="col-md-3">
 						<div class="layers bd bgc-white p-20">
-							<div class="layer w-100 mB-10"><a href="#"><h6 class="lh-1">Dishes</h6></a></div>
+							<div class="layer w-100 mB-10"><a href="Event_Worker.php"><h6 class="lh-1">Event Worker</h6></a></div>
 							<div class="layer w-100">
 								<div class="peers ai-sb fxw-nw">
-									<div class="peer peer-greed"><i class="c-purple-500 ti-tag"></i><i class="c-purple-500 ti-tag"></i></div>
-									<div class="peer"><span class="d-ib lh-0 va-m fw-600 bdrs-10em pX-15 pY-15 bgc-purple-50 c-purple-500"><?php echo "$cnt_dish";?></span>
+									<div class="peer peer-greed"><i class="c-purple-500 ti-id-badge"></i></div>
+									<div class="peer"><span class="d-ib lh-0 va-m fw-600 bdrs-10em pX-15 pY-15 bgc-purple-50 c-purple-500"><?php echo "$cnt_w";?></span>
 									</div>
 								</div>
 							</div>

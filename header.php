@@ -58,7 +58,7 @@
 				<li class="nav-item dropdown"><a class="dropdown-toggle" href="javascript:void(0);"><span class="icon-holder"><i class="c-deep-purple-500 ti-printer"></i> </span><span class="title">Billing</span> <span class="arrow"><i class="ti-angle-right"></i></span></a>
 
 					<ul class="dropdown-menu">
-						<li><a class="sidebar-link" href="#">Hotel Billing  </a></li>
+						<li><a class="sidebar-link" href="hotel_invoice.php">Hotel Billing  </a></li>
 						<li><a class="sidebar-link" href="customer_catering_invoice.php">Catering Billing</a></li>
 					</ul>
 				</li>
@@ -67,7 +67,7 @@
 				<li class="nav-item dropdown"><a class="dropdown-toggle" href="javascript:void(0);"><span class="icon-holder"><i class="c-orange-500 ti-id-badge"></i> </span><span class="title">Worker</span> <span class="arrow"><i class="ti-angle-right"></i></span></a>
 
 					<ul class="dropdown-menu">
-						<li><a class="sidebar-link" href="add_new_w.php">Catering Worker </a></li>
+						<li><a class="sidebar-link" href="worker_details.php">Catering Worker </a></li>
 						<li><a class="sidebar-link" href="#">Hotel Worker </a></li>
 					</ul>
 				</li>

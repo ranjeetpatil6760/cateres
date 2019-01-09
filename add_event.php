@@ -70,7 +70,7 @@
 
 
 				
-								  <select id="selectError" class="form-control" data-rel="chosen"  name="item_name" required="">
+								  <select id="selectError" class="form-control" data-rel="chosen"  name="item_name">
 								  	
 								
 <?php

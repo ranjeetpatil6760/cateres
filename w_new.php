@@ -38,6 +38,8 @@ $ids=$_GET['id'];
 $result1 = mysqli_query($con,"SELECT * FROM event_info where c_id='$ids'");
  while($row = mysqli_fetch_array($result1))
 {
+  $event= $row['event_name'];
+
 ?>
 
                 
@@ -95,7 +97,7 @@ while($row=mysqli_fetch_array($result,MYSQLI_ASSOC))
 <div class="form-group col-md-2">
   <label class="fw-500">No. of Workers</label>
 
-<input type="text" class="form-control" name="no_w" size="4" / required="">
+<input type="text" class="form-control" name="no_w" size="4" / >
 </div>  
 
 
@@ -228,8 +230,10 @@ while($row=mysqli_fetch_array($result,MYSQLI_ASSOC))
 {
   $last_id = $row['c_id'];
 }*/
+
 foreach($_POST['wname'] as $cnt => $a) {
-$sql = "INSERT INTO event_worker (w_name, c_id, wqty,male,female,w_dues,w_amount) VALUES ('$a', '$ids', '".$_POST['no_w'][$cnt]."', '".$_POST['male'][$cnt]."', '".$_POST['female'][$cnt]."','".$_POST['dues'][$cnt]."','".$_POST['amt'][$cnt]."')";
+
+$sql = "INSERT INTO event_worker (w_name, c_id,event, wqty,male,female,w_dues,w_amount) VALUES ('$a', '$ids','$event', '".$_POST['no_w'][$cnt]."', '".$_POST['male'][$cnt]."', '".$_POST['female'][$cnt]."','".$_POST['dues'][$cnt]."','".$_POST['amt'][$cnt]."')";
 mysqli_query($con,$sql);
 }
 

@@ -30,13 +30,14 @@
 
                    
                    <div class="form-group">
-                  <label for="focusedInput">Mob.Number</label>
+                  <label for="focusedInput">Mobile Number</label>
               
-                   <input class="form-control" id="total" type="text" placeholder="Mob.Number" name="mob" required="Please Enter Mobile Number">
+                   <input class="form-control" id="total" type="text" placeholder="Mobile Number" name="mob" required="Please Enter Mobile Number">
                </div>
 
                 <div class="form-group">
-               <select id="selectError" data-rel="chosen" size="4" name="gen" required="Please select Gender">
+                <label for="focusedInput">Gender</label>
+               <select id="selectError" class="form-control" data-rel="chosen"  name="gen" required="Please select Gender">
                     <option>Male</option>
                     <option>Female</option>
                 </div>

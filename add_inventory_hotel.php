@@ -2,8 +2,7 @@
 <?php include "db.php";?>
 <meta charset="utf-8">
 <script src="js/jquery-1.9.1.min.js"></script>
-
-<form action="" method="POST">
+<form name="myform" action="" method="POST">
  <main class="main-content bgc-grey-100">
         <div id="mainContent">
           <div class="container-fluid">
@@ -28,7 +27,7 @@
 
 <div class="form-group col-md-2"> 
 
-<select data-rel="chosen" class="form-control" size="1" name="i_name" required="">
+<select data-rel="chosen" class="form-control" size="1" name="i_name">
 
 <?php
 
@@ -46,11 +45,11 @@ while($row=mysqli_fetch_array($result,MYSQLI_ASSOC))
 
 
 <div class="form-group col-md-2">
-<input type="text" class="form-control" id="quantity" placeholder="Quantity" required=""> 
+<input type="text" class="form-control" id="quantity" name="quantity" placeholder="Quantity"> 
 </div>
 
 <div class="form-group col-md-2">
-        <select id="unit" class="form-control" data-rel="chosen" name="Unit" required="">
+        <select id="unit" class="form-control" data-rel="chosen" name="unit">
   <option>kg</option>
   <option>gm</option>
   <option>mg</option>
@@ -62,12 +61,12 @@ while($row=mysqli_fetch_array($result,MYSQLI_ASSOC))
 </div>
 
 <div class="form-group col-md-2">
-<input type="text" class="form-control" id="price" placeholder="Price" required="">
+<input type="text" class="form-control" id="price" name="price" placeholder="Price">
 </div>
 
 
 <div class="form-group col-md-2">
-<input type="button" class="add-row btn cur-p btn-primary" value="Add Row" onclick="addRow(this.form)">
+<input type="button" class="add-row btn cur-p btn-primary" name="add" value="Add Row" onclick="addRow(this.form)">
 </div>
 <script type="text/javascript">
   
@@ -76,7 +75,7 @@ var sum=0;
 
 function addRow(frm) {
 rowNum ++;
-var row = '<p id="rowNum'+rowNum+'"> Item: <input type="text" name="dn[]"  value="'+frm.i_name.value+'" readonly="true">Quantity: <input type="text" name="dqty[]" size="4" value="'+frm.quantity.value+'" readonly="true">Unit: <input type="text" name="unit[]" value="'+frm.unit.value+'" readonly="true">Price: <input type="text" name="price[]" value="'+frm.price.value+'" readonly="true"><input type="button" class="btn btn-danger" value="-Remove" onclick="removeRow('+rowNum+','+frm.price.value+')"><br></p>';
+var row = '<table class="table table-bordered" id="rowNum'+rowNum+'"><tbody><tr><td><input type="text" name="dn[]" class="form-control" value="'+frm.i_name.value+'" readonly="true"></td><td><input type="text" name="dqty[]" class="form-control"  value="'+frm.quantity.value+'" readonly="true"></td><td> <input type="text" name="unit[]" class="form-control" value="'+frm.unit.value+'" readonly="true"></td> <td><input type="text" name="price[]" class="form-control" value="'+frm.price.value+'" readonly="true" ></td><td><input type="button" class="btn btn-danger" value="-Remove" onclick="removeRow('+rowNum+','+frm.price.value+')"><br></td></tr></table>';
 
  sum+= parseInt(frm.price.value);
 jQuery('#itemRows').append(row);
@@ -135,7 +134,7 @@ $(document).ready(function(){
 </div>
 
 <div class="form-group col-md-2">
-<input id="paid" class="form-control" type="text" placeholder="Paid" name="paid" required="">
+<input id="paid" class="form-control" type="text" placeholder="Paid" name="paid" >
 </div>
 
 
@@ -145,7 +144,7 @@ $(document).ready(function(){
 </div>
 
 <div class="form-group col-md-2">
-        <select id="status" class="form-control" data-rel="chosen" name="status" required="">
+        <select id="status" class="form-control" data-rel="chosen" name="status">
   <option>Dues</option>
   <option>Full Payment</option>
   
@@ -197,7 +196,7 @@ $result = mysqli_query($con,$id);
 while($row=mysqli_fetch_array($result,MYSQLI_ASSOC))
 {
   $last_id = $row['t_id'];
-  echo $last_id;
+  
 }
 foreach($_POST['dqty'] as $cnt => $a) {
 $sql = "INSERT INTO inventory_stock_hotel (t_id, item, qty, unit, price) VALUES ('$last_id',N'".$_POST['dn'][$cnt]."','$a', '".$_POST['unit'][$cnt]."', '".$_POST['price'][$cnt]."');";
