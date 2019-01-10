@@ -34,14 +34,16 @@
                     console.log(data);
                      var date = [];
                     var total = [];
-
+                
                     for (var i in data) {
                         date.push(data[i].date);
                         total.push(data[i].total);
+                       
                     }
 
                     var chartdata = {
                         labels: date,
+                        
                         datasets: [
                             {
                                 label: 'Bill Total',
@@ -51,7 +53,8 @@
                                 hoverBorderColor: '#666666',
                                 data: total
                             }
-                        ]
+                        ],
+
                     };
 
                     var graphTarget = $("#graphCanvas");

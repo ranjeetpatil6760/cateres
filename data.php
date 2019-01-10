@@ -3,7 +3,7 @@ header('Content-Type: application/json');
 
 include "db.php";
 
-$sqlQuery = "SELECT c_id,date,total FROM cat_bill ORDER BY c_id";
+$sqlQuery = "SELECT c_id,date,total,discount FROM cat_bill ORDER BY c_id";
 
 $result = mysqli_query($con,$sqlQuery);
 

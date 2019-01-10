@@ -2,6 +2,7 @@
  include "db.php";
 $ids=$_GET['id'];
 ?>
+<script src="js/jquery-1.9.1.min.js"></script>
 <main class="main-content bgc-grey-100">
         <div id="mainContent">
           <div class="container">
@@ -74,7 +75,7 @@ $da = $row['date'];
                        <div class="form-group col-md-6">
                     <label for="inputEmail4">Amount Paid</label>
                     
-                  <input class="form-control" id="paid" type="text" name="paid">
+                  <input class="form-control" id="apaid" type="text" name="paid">
                   </div>
 
               
@@ -94,6 +95,25 @@ $da = $row['date'];
 </select>
 
 </div>
+<br>
+                
+<div class="form-row">
+<div class="form-group col-md-6">
+  <button type="submit" class="btn cur-p btn-success" name="save">Save changes</button> |<button class="btn cur-p btn-danger">Cancel</button>
+</div>  
+</form>
+<script type="text/javascript">
+              $(document).ready(function(){
+
+    $('#apaid').change(function(){
+      var t=$('#dues').val();
+      var a=$('#apaid').val();
+      var e=t-a;
+      
+        $('#new_dues').val(e);
+    });
+    });
+              </script>
                        <div class="col-md-12">
             <div class="bgc-white bd bdrs-3 p-20 mB-20">
               <h4 class="c-grey-900 mB-20">Stock Purchased</h4>
@@ -127,11 +147,35 @@ echo "<td>" . $row['price'] . "</td></tr>";
           </div>
                  
 
-</form>
+
 </div>
             </div>
           </div>
         </div>
       </div>
     </main>
+    <?php
+
+
+if(isset($_POST['save']))
+{
+
+$n_d=$_POST['new_dues'];
+$p_s=$_POST['status'];
+$date=$_POST['dt'];
+
+//inserting in hotel_customer_info
+$qry="Update hotel_info set total ='$n_d',up_dt='$date',status='$p_s' where t_id='$ids'";
+if(mysqli_query($con,$qry))
+{
+  echo "<script> alert('Updates successfully')";
+  echo " </script>";
+}
+else
+{
+  echo "<script> alert('Failed to update.Try Again!')";
+  echo " </script>";
+}
+}
+?>
   <?php include 'footer.php';?>        

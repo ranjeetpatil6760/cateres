@@ -13,7 +13,7 @@ $result = mysqli_query($con,"SELECT * FROM cat_bill where c_id='$ids'");
  while($row = mysqli_fetch_array($result))
 {
         ?>
-          	<h4 class="c-grey-900 mT-10 mB-30">Customer Dues </h4>
+          	<h4 class="c-grey-900 mT-10 mB-30">Event Dues </h4>
 
 <form method="post" action="">
 <div class="form-row">
@@ -22,17 +22,17 @@ $result = mysqli_query($con,"SELECT * FROM cat_bill where c_id='$ids'");
 
 <div class="masonry-item col-md-4">
         
-            
-            <div class="mT-30">
-            
+            <div class="row">
+            <div class="col-md-6">
+                  <h4 class="c-grey-900 mT-10 mB-30">Customer Dues </h4>
                 <div class="form-group">
                   <label for="focusedInput">Pending Amount</label>
-                   <input class="form-control" id="pending" type="text" placeholder="Name" readonly="true" name="Pending" value="<?php echo $row['dues']; }?>"></div>
+                   <input class="form-control" id="pending" type="text"  readonly="true" name="Pending" value="<?php echo $row['dues']; ?>"></div>
 
                   <div class="form-group">
                     <label for="focusedInput">Paid</label>
                     
-                    <input class="form-control" id="paid" type="text" placeholder="Rs." name="paid">
+                    <input class="form-control" id="paid" type="text" placeholder="Rs." name="paid" required="">
                   </div>
 
                    
@@ -41,7 +41,27 @@ $result = mysqli_query($con,"SELECT * FROM cat_bill where c_id='$ids'");
               
                    <input class="form-control" id="new_dues" type="text" placeholder="Rs." name="new_dues">
                </div>
+             </div>
+             <div class="col-md-6">
+                  <h4 class="c-grey-900 mT-10 mB-30">Worker Dues </h4>
+                <div class="form-group">
+                  <label for="focusedInput">Pending Amount</label>
+                   <input class="form-control" id="wpending" type="text"  readonly="true" name="wPending" value="<?php echo $row['w_totaldues']; }?>"></div>
 
+                  <div class="form-group">
+                    <label for="focusedInput">Paid</label>
+                    
+                    <input class="form-control" id="wpaid" type="text" placeholder="Rs." name="wpaid" required="">
+                  </div>
+
+                   
+                   <div class="form-group">
+                  <label for="focusedInput">Remaining Dues</label>
+              
+                   <input class="form-control" id="wnew_dues" type="text" placeholder="Rs." name="wnew_dues">
+               </div>
+             </div>
+</div>
                <div class="form-group">
                   
               <label for="selectError">Payment Status:</label>
@@ -51,8 +71,11 @@ $result = mysqli_query($con,"SELECT * FROM cat_bill where c_id='$ids'");
                   <select id="selectError" data-rel="chosen" size="4" name="p_status">
                     <option>Full Payment</option>
                     <option>Dues</option>
+                    </select>
                 </div>
-            </select>
+            
+          
+        
 <br>
                 
 <div class="form-row">
@@ -65,6 +88,7 @@ $result = mysqli_query($con,"SELECT * FROM cat_bill where c_id='$ids'");
 
 </div>
 </div>
+</div>
 </form>
 <script type="text/javascript">
               $(document).ready(function(){
@@ -73,8 +97,15 @@ $result = mysqli_query($con,"SELECT * FROM cat_bill where c_id='$ids'");
       var t=$('#pending').val();
       var a=$('#paid').val();
       var e=t-a;
-      if()
+      
         $('#new_dues').val(e);
+    });
+     $('#wpaid').change(function(){
+      var g=$('#wpending').val();
+      var s=$('#wpaid').val();
+      var tt=g-s;
+      
+        $('#wnew_dues').val(tt);
     });
 });
               </script>
@@ -90,9 +121,10 @@ if(isset($_POST['save']))
 
 $n_d=$_POST['new_dues'];
 $p_s=$_POST['p_status'];
+$wn_d=$_POST['wnew_dues'];
 
 //inserting in hotel_customer_info
-$qry="Update cat_bill set dues='$n_d',pay_status='$p_s' where c_id='$ids'";
+$qry="Update cat_bill set dues='$n_d',pay_status='$p_s',w_totaldues='$wn_d' where c_id='$ids'";
 if(mysqli_query($con,$qry))
 {
   echo "<script> alert('Updates successfully')";
@@ -105,7 +137,10 @@ else
 }
 }
 ?>
-          
+<!--      <script type="text/javascript">
+alert("review your answer");
+window.location.href = "index.php";
+</script>    -->  
         
 
 <?php include 'footer.php';?>

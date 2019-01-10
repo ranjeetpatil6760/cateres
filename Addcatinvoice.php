@@ -31,6 +31,7 @@ $ids=$_GET['id'];
 $result = mysqli_query($con,"SELECT * FROM event_info where c_id='$ids'");
  while($row = mysqli_fetch_array($result))
 {
+  $event=$row['event_name'];
 ?>
 
                 
@@ -140,7 +141,7 @@ while($row=mysqli_fetch_array($result,MYSQLI_ASSOC))
   <div class="form-group"> 
 
   
-</table>
+
 <script type="text/javascript">
   document.cookie = "flag =0";
    
@@ -172,7 +173,7 @@ var orowNum = 0;
 var ort=0;
 function addoRow(frm) {
 orowNum ++;
-var orow = '<p id="orowNum'+orowNum+'">Item: <input type="text" name="oname[]"  value="'+frm.add_oitem.value+'" readonly="true">Quantity: <input type="text" name="oqty[]"  value="'+frm.add_oqty.value+'" readonly="true"> Price: <input type="text" name="oprice[]" value="'+frm.add_oprice.value+'" readonly="true">Amount: <input type="text" name="oTprice[]" value="'+frm.add_oprice.value*frm.add_oqty.value+'" readonly="true"> <input type="button" class="btn btn-danger" value="-Remove" onclick="removeORow('+orowNum+','+frm.add_oprice.value*frm.add_oqty.value+');"><br></p>';
+var orow = '<table class="table table-bordered" id="orowNum'+orowNum+'"><tbody><tr><td><input type="text" class="form-control" name="oname[]"  value="'+frm.add_oitem.value+'" readonly="true"></td><td><input type="text" class="form-control" name="oqty[]"  value="'+frm.add_oqty.value+'" readonly="true"></td><td><input type="text" class="form-control" name="oprice[]" value="'+frm.add_oprice.value+'" readonly="true"></td><td><input type="text" class="form-control" name="oTprice[]" value="'+frm.add_oprice.value*frm.add_oqty.value+'" readonly="true"></td><td> <input type="button" class="btn btn-danger" value="-Remove" onclick="removeORow('+orowNum+','+frm.add_oprice.value*frm.add_oqty.value+');"</td></tr></tbody></table>';
  sum+=frm.add_oprice.value*frm.add_oqty.value;
 jQuery('#itemoRows').append(orow);
 frm.add_oitem.value = '';

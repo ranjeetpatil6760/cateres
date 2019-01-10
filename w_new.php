@@ -211,7 +211,9 @@ $totaldues=$_POST['subtotal'];
 $totalamount=$_POST['samount'];
 
 //inserting in hotel_customer_info
-$qry="INSERT INTO cat_bill (w_totaldues,w_total) VALUES ('$totaldues','$totalamount')";
+//update users set username='JACK' and password='123' WHERE id='1';
+//$qry="INSERT INTO cat_bill (w_totaldues,w_total) VALUES ('$totaldues','$totalamount')";
+$qry= "UPDATE `cat_bill` SET `w_totaldues`='$totaldues',`w_total`='$totalamount' WHERE c_id='$ids';";
 if(mysqli_query($con,$qry))
 {
   echo "<script> alert('Stored successfully')";
