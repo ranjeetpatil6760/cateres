@@ -25,6 +25,9 @@ $result = mysqli_query($con,"SELECT * FROM cat_bill where c_id='$ids'");
             <div class="row">
             <div class="col-md-6">
                   <h4 class="c-grey-900 mT-10 mB-30">Customer Dues </h4>
+                  <div class="form-group">
+                  <label for="focusedInput">Advance Amount</label>
+                   <input class="form-control" id="advance" type="text"  readonly="true" name="Advance" value="<?php echo $row['advance']; ?>"></div>
                 <div class="form-group">
                   <label for="focusedInput">Pending Amount</label>
                    <input class="form-control" id="pending" type="text"  readonly="true" name="Pending" value="<?php echo $row['dues']; ?>"></div>
@@ -44,6 +47,9 @@ $result = mysqli_query($con,"SELECT * FROM cat_bill where c_id='$ids'");
              </div>
              <div class="col-md-6">
                   <h4 class="c-grey-900 mT-10 mB-30">Worker Dues </h4>
+                  <div class="form-group">
+                  <label for="focusedInput">Advance Amount</label>
+                   <input class="form-control" id="advance" type="text"  readonly="true" name="Advance" value="<?php echo $row['w_totaladvance']; ?>"></div>
                 <div class="form-group">
                   <label for="focusedInput">Pending Amount</label>
                    <input class="form-control" id="wpending" type="text"  readonly="true" name="wPending" value="<?php echo $row['w_totaldues']; }?>"></div>
