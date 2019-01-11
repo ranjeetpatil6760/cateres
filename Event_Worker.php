@@ -62,11 +62,11 @@ $(document).ready(function(){
              
                <div class="row">
                     <div class="col-md-6">
-                      <label class="fw-500">Search by Event</label>
+                      <label class="fw-500">Search by Name</label>
                     <div class="col-md-4">
               <div class="layer w-100">
             <div class="bdT bdB">
-              <input type="text" class="form-control m-0 bdw-0 pY-15 pX-20"  id="myIn" onkeyup="myFun()" placeholder="Search by Event "></div>
+              <input type="text" class="form-control m-0 bdw-0 pY-15 pX-20"  id="myIn" onkeyup="myFun()" placeholder="Search by Name "></div>
             </div>
           </div>
 
@@ -117,26 +117,30 @@ $result = mysqli_query($con,"SELECT * FROM event_worker order by(c_id) desc");
            echo "<table class='table table-bordered' id='myTable'>
                 <thead>
                     <tr>
+                    <th>Date</th>
                       <th>Worker Name</th>
                         <th>Event Name</th>
                         <th>Worker</th>
                         <th>Male</th>
                         <th>Female</th>
-                        <th>Dues</th>
+                        <th>Advance</th>
                         <th>Amount</th>
+                        <th>Dues</th>
               
                     </tr>
                 </thead>";
                 while($row = mysqli_fetch_array($result))
 {
 echo "<tr>";
+echo "<td>" . $row['w_date'] . "</td>"; 
 echo "<td>" . $row['w_name'] . "</td>"; 
 echo "<td>" . $row['event'] . "</td>"; 
 echo "<td>" . $row['wqty'] . "</td>";
 echo "<td>" . $row['male'] . "</td>"; 
 echo "<td>" . $row['female'] . "</td>";
-echo "<td>" . $row['w_dues'] . "</td>";
+echo "<td>" . $row['w_advance'] . "</td>";
 echo "<td>" . $row['w_amount'] . "</td>";
+echo "<td>" . $row['w_dues'] . "</td>";
 
 ?>
 <?php
