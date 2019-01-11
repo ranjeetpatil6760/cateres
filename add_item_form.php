@@ -21,8 +21,28 @@
       							 <input class="form-control" id="focusedInput" type="text" placeholder="Item  Name" name="item" required="">
       						</div>
       						
-      					</div>
+      					
+                    
+ <div class="form-group col-md-2">  
+<label for="selectError" class="fw-500">Category</label>
 
+
+<div id="itemRows1">
+<select id="selectError1" class="form-control" data-rel="chosen" name="category">
+
+  <option>other</option>
+  <option>non-veg</option>
+  <option>kirana</option>
+  <option>bakery</option>
+  <option>bhaji</option>
+  <option>fruits</option>
+
+</select>
+
+</div> 
+
+</div>
+</div>
 
       					
 							 
@@ -42,6 +62,7 @@ if(isset($_POST['save']))
 {
 
 $item=$_POST['item'];
+$category= $_POST['category'];
 
 $res = mysqli_query($con, "select * from item_list where items=N'$item'");
 
@@ -55,7 +76,7 @@ else
     {
 
 //inserting in hotel_customer_info
-$qry="INSERT INTO item_list (items) VALUES (N'$item')";
+$qry="INSERT INTO item_list (items,category) VALUES (N'$item','$category')";
 if(mysqli_query($con,$qry))
 {
   echo "<script> alert('Stored successfully')";
