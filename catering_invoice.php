@@ -11,7 +11,7 @@
     <meta charset="utf-8">
     <title>Item Lists</title>
     <meta name="description" content="Bootstrap Metro Dashboard">
-    <meta name="author" content="Dennis Ji">
+    <meta name="author" content="Umbrella Systems">
     <meta name="keyword" content="Metro, Metro UI, Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
     <!-- end: Meta -->
     
@@ -208,7 +208,7 @@ while($row=mysqli_fetch_array($result,MYSQLI_ASSOC))
                             RECEIVER'S SIGNATURE & STAMP</b> 
                     </div>
                     <div width="50%" style="float:right;">
-                         <b>FOR SALVI CATERING      
+                         <b>Salvi Catering Services     
                             </b>   
 
                 </div>
