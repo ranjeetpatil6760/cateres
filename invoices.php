@@ -15,7 +15,13 @@
 	
 		
 	<script src="/js/bootstrap.min.js"></script>	
-
+<style type="text/css">
+	  @media print
+        {
+            #PrintPageButton{
+            display:none;
+        }
+</style>
 </head>
 <body>
 	<div class="container">
@@ -159,7 +165,7 @@ $rows = $result->num_rows;    // Find total rows returned by database
  ?>
 <div class="col-lg-10" style="border:1px solid black;"></div><br>
  <table style="height: 50%;" align="center" cellpadding="2" cellspacing="0">
-         <b>बेकरी  साहित्य: </b><br></div> <br>      	<?php
+         <b>डेअरी   साहित्य: </b><br></div> <br>      	<?php
  while ($row = $result->fetch_array()) {
  if(($counter % $cols) == 1) {    // Check if it's new row
  echo '<tr style="width:1px">'; 
@@ -314,7 +320,7 @@ mysqli_close($con);
 					</div>
 				</div>
 				<div class="text-center">
-					<button id="printPageButton" class="btn btn-default print-btn" onclick="window.print();">Print</button>
+					<button id="PrintPageButton" class="btn btn-default print-btn" onclick="window.print();">Print</button>
 				</div>			
 			</div>			
 		</div>
