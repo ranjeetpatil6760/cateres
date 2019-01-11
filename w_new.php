@@ -39,7 +39,7 @@ $result1 = mysqli_query($con,"SELECT * FROM event_info where c_id='$ids'");
  while($row = mysqli_fetch_array($result1))
 {
   $event= $row['event_name'];
-
+  
 ?>
 
                 
@@ -114,15 +114,20 @@ while($row=mysqli_fetch_array($result,MYSQLI_ASSOC))
 </div>  
 
 <div class="form-group col-md-2">
-  <label class="fw-500">Dues</label>
+  <label class="fw-500">Advance</label>
 
-<input type="text" class="form-control" name="dues" />
+<input type="text" class="form-control" id="adv" name="advance" />
 </div>  
 
 <div class="form-group col-md-2">
   <label class="fw-500">Amount</label>
 
-<input type="text" class="form-control" name="amt" />
+<input type="text" class="form-control" id="paid" name="amt" />
+</div>  
+<div class="form-group col-md-2">
+  <label class="fw-500">Dues</label>
+
+<input type="text" class="form-control" id="dues" name="due" />
 </div>  
 
 
@@ -136,29 +141,43 @@ var sum=0;
 var sum1=0;
 var am=0;
 var am1=0;
+var du=0;
+var du1=0;
 function addRow(frm) {
 rowNum ++;
-var row = '<p id="rowNum'+rowNum+'"><label class="fw-500">Worker Name:</label><input type="text"  name="wname[]" value="'+frm.w_name.value+'" readonly="true" /><label class="fw-500">No.of Workers:</label><input type="text"  name="no_w[]" value="'+frm.no_w.value+'" readonly="true" /><label class="fw-500">Male:</label><input type="text"  name="male[]" value="'+frm.male.value+'" readonly="true" /><label class="fw-500">Female:</label><input type="text"  name="female[]" value="'+frm.female.value+'" readonly="true" /><label class="fw-500">Dues:</label><input type="text"  name="dues[]" value="'+frm.dues.value+'" readonly="true" /><label class="fw-500">Amount:</label><input type="text"  name="amt[]" value="'+frm.amt.value+'" readonly="true" /><br><br><input  type="button" class="btn btn-danger" value="-Remove" onclick="removeRow('+rowNum+');"></p>';
- sum=frm.dues.value;
+var row = '<p id="rowNum'+rowNum+'"><label class="fw-500">Worker Name:</label><input type="text"  name="wname[]" value="'+frm.w_name.value+'" readonly="true" /><label class="fw-500">No.of Workers:</label><input type="text"  name="no_w[]" value="'+frm.no_w.value+'" readonly="true" /><label class="fw-500">Male:</label><input type="text"  name="male[]" value="'+frm.male.value+'" readonly="true" /><label class="fw-500">Female:</label><input type="text"  name="female[]" value="'+frm.female.value+'" readonly="true" /><label class="fw-500">Advance:</label><input type="text"  name="advance[]" value="'+frm.advance.value+'" readonly="true" /><label class="fw-500">Amount:</label><input type="text"  name="amt[]" value="'+frm.amt.value+'" readonly="true" />Dues:</label><input type="text"  name="due[]" value="'+frm.due.value+'" readonly="true" /><br><br><input  type="button" class="btn btn-danger" value="-Remove" onclick="removeRow('+rowNum+');"></p>';
+ sum=frm.advance.value;
  sum1+=parseInt(sum);
  am=frm.amt.value;
  am1+=parseInt(am);
-
+du=frm.due.value;
+ du1+=parseInt(du);
 jQuery('#itemRows').append(row);
 frm.w_name.value = '';
 frm.no_w.value = '';
 frm.male.value = '';
 frm.female.value = '';
-frm.dues.value = ''; 
+frm.advance.value = ''; 
 frm.amt.value = '';
+frm.due.value = '';
 
 $('#stotal').val(sum1);
 $('#samt').val(am1);
+$('#sdue').val(du1);
 }
 function removeRow(rnum) {
 jQuery('#rowNum'+rnum).remove();
 }
+$(document).ready(function(){
 
+    $('#paid').change(function(){
+      var t=$('#adv').val();
+      var a=$('#paid').val();
+      var e=a-t;
+      
+        $('#dues').val(e);
+    });
+    });
 //$(document).ready(function(){
   //  $('#dcnt').change(function(){
     //  var s=$('#stotal').val();
@@ -183,7 +202,7 @@ jQuery('#rowNum'+rnum).remove();
             <div class="mT-30">
             
                 <div class="form-group">
-                  <label for="focusedInput">Total Dues</label>
+                  <label for="focusedInput">Total Advance</label>
                    <input class="form-control" id="stotal" type="text" placeholder="Rs." name="subtotal"></div>
 
                   <div class="form-group">
@@ -191,6 +210,12 @@ jQuery('#rowNum'+rnum).remove();
                     
                     <input class="form-control" id="samt" type="text" placeholder="Rs." name="samount">
                   </div>
+                   <div class="form-group">
+                    <label for="focusedInput">Total Dues</label>
+                    
+                    <input class="form-control" id="sdue" type="text" placeholder="Rs." name="sdues">
+                  </div>
+
 
                   
 
@@ -207,13 +232,13 @@ include "db.php";
 if(isset($_POST['save']))
 {
 
-$totaldues=$_POST['subtotal'];
+$totaladvance=$_POST['subtotal'];
 $totalamount=$_POST['samount'];
-
+$totaldues=$_POST['sdues'];
 //inserting in hotel_customer_info
 //update users set username='JACK' and password='123' WHERE id='1';
 //$qry="INSERT INTO cat_bill (w_totaldues,w_total) VALUES ('$totaldues','$totalamount')";
-$qry= "UPDATE `cat_bill` SET `w_totaldues`='$totaldues',`w_total`='$totalamount' WHERE c_id='$ids';";
+$qry= "UPDATE `cat_bill` SET `w_totaladvance`='$totaladvance',`w_total`='$totalamount',`w_totaldues`='$totaldues' WHERE c_id='$ids';";
 if(mysqli_query($con,$qry))
 {
   echo "<script> alert('Stored successfully')";
@@ -235,7 +260,7 @@ while($row=mysqli_fetch_array($result,MYSQLI_ASSOC))
 
 foreach($_POST['wname'] as $cnt => $a) {
 
-$sql = "INSERT INTO event_worker (w_name, c_id,event, wqty,male,female,w_dues,w_amount) VALUES ('$a', '$ids','$event', '".$_POST['no_w'][$cnt]."', '".$_POST['male'][$cnt]."', '".$_POST['female'][$cnt]."','".$_POST['dues'][$cnt]."','".$_POST['amt'][$cnt]."')";
+$sql = "INSERT INTO event_worker (w_name, c_id,event,w_date, wqty,male,female,w_advance,w_amount,w_dues) VALUES ('$a', '$ids','$event','$date', '".$_POST['no_w'][$cnt]."', '".$_POST['male'][$cnt]."', '".$_POST['female'][$cnt]."','".$_POST['advance'][$cnt]."','".$_POST['amt'][$cnt]."','".$_POST['due'][$cnt]."')";
 mysqli_query($con,$sql);
 }
 
